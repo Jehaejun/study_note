@@ -6,6 +6,7 @@ ALTER TABLE album_comment CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unico
 
 
 윈도우 기준
+
  **my.ini**
 
 ```
