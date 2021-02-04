@@ -30,6 +30,7 @@ WHERE n.ip NOT IN (
 위 sql 출처 (Faster data updates with CartoDB — CARTO Blog)
 
 **주의점**
+
 select문과 update, insert 문과의 차이점은 select문은 복수행을 한번에 취득한다는 점이고, update, insert 문은 row by row로 결과를 취득한다는 것입니다. 때문에 위의 UPDATE문에서 n테이블을 사용했을 때, 마치 for loop 도는 것과 같은 액션이 가능합니다.
 
 **예시)**
@@ -57,7 +58,7 @@ SELECT P.PROD_GRP, P.PROD_CD, P.BIZ_NO, P.BANK_PROD_CD,  TO_CHAR(NOW(), 'YYYYMMD
 SQL Error [XX000]: ERROR: failed to find conversion function from unknown to text
 ```
 
-문자열 리터럴의 (아직 알려지지 않은) 데이터 유형을 선언하기 위해 명시 적 캐스트가 필요함을 의미합니다
+문자열 리터럴의 (아직 알려지지 않은) 데이터 유형을 선언하기 위해 명시 적 캐스트가 필요함을 의미합니다.
 
 https://stackoverflow.com/questions/18073901/failed-to-find-conversion-function-from-unknown-to-text
 
