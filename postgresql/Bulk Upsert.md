@@ -1,4 +1,4 @@
-# SBulk Upsert
+# Bulk Upsert
 
 PostgreSQL 9.5에서 ON CONFLICT 가 도입된 후 Upsert (Insert or Update) 문을 쓸수 있게 되었지만, 복수행을 bulk로 보내는건 불가했습니다.
 
