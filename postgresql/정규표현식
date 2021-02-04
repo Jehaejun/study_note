@@ -1,0 +1,47 @@
+# 정규 표현식 (POSIX-Style Regular Expressions)
+
+정규표현식을 이용하면  LIKE 연산자,  SIMILAR TO 연산자보다 더욱 강력한 패턴 매칭을 할 수 있습니다. 
+
+| 연산자 | 설명                                           | 사용 예                 |
+| ------ | ---------------------------------------------- | ----------------------- |
+| ~      | 정규식과 일치, 대소문자 구별함                 | 'thomas' ~ '.*thomas.*  |
+| ~*     | 정규식과 일치, 대소문자 구별하지 않음          | 'thomas' ~* '.*Thomas.* |
+| !~     | 정규식과 일치하지 않음, 대소문자 구별함        | 'thomas' !~ '.*Thomas.* |
+| !~*    | 정규식에 일치하지 않음, 대소문자 구별하지 않음 | 'thomas' !~* '.*vadim.* |
+
+
+
+**예시 1)**
+
+```sql
+SELECT * 
+  FROM USER_LDGR
+ WHERE NICK_NAME ~ '^별명[0-9]{4}$';
+```
+
+USER_LDGR 테이블에서 NICK_NAME이 별명0000 ~별명9999인 데이터를 찾습니다.
+
+
+
+**예시 2)**
+
+```sql
+  SELECT *
+  FROM ACCT_TRNS_HSTR A LEFT JOIN (SELECT (LENGTH(PSBK_CTT) - LENGTH(REPLACE(PSBK_CTT, '#', ''))) AS SHOPLENGTH
+                                          , POSITION('#' IN PSBK_CTT) AS SHOPPOSITION
+                                          , * 
+                                     FROM BUPY_CLAS_PTCL) B ON (B.USE_INTT_ID = A.USE_INTT_ID
+                                                                AND (CASE WHEN B.ACCT_NO = '' THEN TRUE ELSE  B.ACCT_NO  = A.ACCT_NO END)
+                                                                AND B.INOUT_DV = A.INOUT_DV
+                                                                AND CASE WHEN B.SHOPLENGTH > 0
+                                                                         THEN CASE WHEN B.SHOPPOSITION = 1 
+                                                                                   THEN A.RMRK1 ~ ('^[0-9]{' || B.SHOPLENGTH || '} ' || REPLACE(B.PSBK_CTT, '#', '') || '$')
+                                                                                   ELSE A.RMRK1 ~ ('^' || REPLACE(B.PSBK_CTT, '#', '') || '[0-9]{' || B.SHOPLENGTH || '}$')
+                                                                              END
+                                                                         ELSE B.PSBK_CTT = A.RMRK1
+                                                                    END)
+```
+
+BUPY_CLAS_PTCL 테이블에 PSBK_CTT 컬럼에 별칭####으로 입력되어 있으면 ACCT_TRNS_HSTR 테이블의 RMRK1 컬럼 데이터가 별칭0000~9999와 조인 해줍니다.
+
+ #의 개수는 가변적이며 문자 앞 과 뒤에 올 수 있습니다. 예) ###별칭 -> 000~999별칭, 별칭## -> 별칭00~99
