@@ -58,7 +58,7 @@ SELECT P.PROD_GRP, P.PROD_CD, P.BIZ_NO, P.BANK_PROD_CD,  TO_CHAR(NOW(), 'YYYYMMD
 SQL Error [XX000]: ERROR: failed to find conversion function from unknown to text
 ```
 
-문자열 리터럴의 (아직 알려지지 않은) 데이터 유형을 선언하기 위해 명시 적 캐스트가 필요함을 의미합니다.
+문자열 리터럴의 (아직 알려지지 않은) 데이터 유형을 선언하기 위해 명시적 캐스트가 필요함을 의미합니다.
 
 https://stackoverflow.com/questions/18073901/failed-to-find-conversion-function-from-unknown-to-text
 
