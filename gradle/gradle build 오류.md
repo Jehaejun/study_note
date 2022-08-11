@@ -1,3 +1,4 @@
+# gradle build 오류
 ## 스프링 부트 프로젝트를 깃허브에서 pull한 후에 gradlew로 빌드하는 과정에서 발생
 
 `/gradlew: command not found`
