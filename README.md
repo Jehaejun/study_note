@@ -1,4 +1,4 @@
-|               |                                                                                                                                                                                           |
+|     목록          |    내용                                                                                                                                                                                       |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | postgresql     | [정규표현식](https://github.com/Jehaejun/study_note/blob/main/postgresql/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D.md)                                                                |
 |                | [Bulk Upsert](https://github.com/Jehaejun/study_note/blob/main/postgresql/Bulk%20Upsert.md)                                                                                               |
